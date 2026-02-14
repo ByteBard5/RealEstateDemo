@@ -18,6 +18,15 @@ export default function ChatSection() {
   const messagesRef = useRef(null);
   const isUserAtBottomRef = useRef(true);
 
+  // Store persistent sessionId
+  const sessionIdRef = useRef(
+    localStorage.getItem("n8n-chat-session") || crypto.randomUUID(),
+  );
+
+  useEffect(() => {
+    localStorage.setItem("n8n-chat-session", sessionIdRef.current);
+  }, []);
+
   const handleScroll = () => {
     const el = messagesRef.current;
     if (!el) return;
@@ -35,11 +44,17 @@ export default function ChatSection() {
 
   const extractBotReply = (responseData) => {
     try {
+      // n8n embedded chat response format
       if (responseData?.data?.[0]?.output) return responseData.data[0].output;
+
       if (responseData?.output) return responseData.output;
+
       if (responseData?.message) return responseData.message;
+
       if (responseData?.text) return responseData.text;
+
       if (typeof responseData === "string") return responseData;
+
       return JSON.stringify(responseData);
     } catch {
       return "⚠️ Error reading response.";
@@ -62,10 +77,11 @@ export default function ChatSection() {
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
         body: JSON.stringify({
-          message: userText,
+          action: "sendMessage",
+          sessionId: sessionIdRef.current,
+          chatInput: userText,
         }),
       });
 
@@ -77,7 +93,7 @@ export default function ChatSection() {
 
       setMessages((prev) => [...prev, { role: "bot", content: botReply }]);
     } catch (error) {
-      console.error(error);
+      console.error("Chat error:", error);
 
       setMessages((prev) => [
         ...prev,
@@ -92,6 +108,11 @@ export default function ChatSection() {
   };
 
   const resetChat = () => {
+    const newSession = crypto.randomUUID();
+
+    sessionIdRef.current = newSession;
+    localStorage.setItem("n8n-chat-session", newSession);
+
     setMessages([INITIAL_MESSAGE]);
     setInput("");
     setLoading(false);

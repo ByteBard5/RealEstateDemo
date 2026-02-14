@@ -10,7 +10,7 @@ const Home = () => {
     <>
       <HeroSection />
       <ChatSection />
-      {/* <VoiceSection />  */}
+      <VoiceSection />
       <ChannelsSection />
       <VideoSection />
       <CTASection />

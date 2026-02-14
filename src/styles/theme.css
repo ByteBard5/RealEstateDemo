@@ -440,104 +440,6 @@
 /* ==========================================================================================
    CHANNELS SECTION END
 ============================================================================================== */
-
-/* =========================================================
-   VOICE SECTION
-========================================================= */
-.voice-section {
-  padding: clamp(80px, 10vh, 120px) clamp(20px, 5vw, 56px);
-  background: #263425;
-  text-align: center;
-}
-
-.voice-intro {
-  max-width: 820px;
-  margin: 0 auto 60px;
-}
-
-.voice-intro h2 {
-  font-size: clamp(1.9rem, 4vw, 2.7rem);
-  color: #ffffff;
-  margin-bottom: 14px;
-}
-
-.voice-intro p {
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.6;
-}
-
-/* Glass card */
-.voice-glass {
-  width: 260px;
-  height: 260px;
-  margin: 0 auto;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(18px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.3s ease;
-  position: relative;
-}
-
-.voice-glass.active {
-  box-shadow: 0 0 0 16px rgba(122, 163, 45, 0.15);
-}
-
-/* Phone icon */
-.voice-phone-icon {
-  width: 46px;
-  margin-bottom: 12px;
-}
-
-/* Waves */
-.voice-waves {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 8px;
-}
-
-.voice-waves span {
-  width: 4px;
-  height: 18px;
-  background: #ffffff;
-  animation: wave 1s infinite ease-in-out;
-}
-
-.voice-waves span:nth-child(2) {
-  animation-delay: 0.1s;
-}
-.voice-waves span:nth-child(3) {
-  animation-delay: 0.2s;
-}
-.voice-waves span:nth-child(4) {
-  animation-delay: 0.3s;
-}
-.voice-waves span:nth-child(5) {
-  animation-delay: 0.4s;
-}
-
-@keyframes wave {
-  0%,
-  100% {
-    height: 8px;
-    opacity: 0.4;
-  }
-  50% {
-    height: 24px;
-    opacity: 1;
-  }
-}
-
-.voice-status {
-  font-size: 1rem;
-  color: #ffffff;
-}
 /* ==========================================================================================
    VIDEO SECTION – LANDSCAPE ONLY
 ============================================================================================== */
@@ -763,4 +665,126 @@
   .cta-links {
     gap: 10px;
   }
+}
+/* =========================================================
+   VOICE SECTION
+========================================================= */
+
+.voice-section {
+  padding: clamp(70px, 9vh, 120px) clamp(20px, 5vw, 56px);
+  background: #263425; /* MATCHING CHANNELS */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.voice-title {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  color: #ffffff;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.voice-glass {
+  width: 100%;
+  max-width: 1100px;
+  padding: clamp(40px, 5vw, 64px);
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.voice-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.voice-left h2 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.voice-left p {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+.voice-right {
+  width: 100%;
+  height: 260px;
+}
+
+.voice-visualizer {
+  width: 100%;
+  height: 100%;
+}
+
+.voice-visualizer canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .voice-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .voice-right {
+    height: 220px;
+  }
+}
+/* TIMER */
+.voice-timer {
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: rgba(120, 255, 180, 0.9);
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.voice-timer.warning {
+  color: #ff4d4d;
+}
+
+/* LIVE DOT */
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: #00ffae;
+  border-radius: 50%;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* BUTTON DANGER STATE */
+.primary-btn.danger {
+  background: #ff4d4d;
+}
+
+.primary-btn.danger:hover {
+  background: #e63946;
 }

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-const WEBHOOK_URL = import.meta.env.VITE_N8N_CHAT_WEBHOOK;
+const CHAT_URL = import.meta.env.VITE_N8N_CHAT_WEBHOOK;
 
 const INITIAL_MESSAGE = {
   role: "bot",
@@ -41,29 +41,45 @@ export default function ChatSection() {
     setLoading(true);
 
     try {
-      const res = await fetch(WEBHOOK_URL, {
+      const res = await fetch(CHAT_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        credentials: "include", // ✅ REQUIRED for Embedded Chat session
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          message: userText,
-          source: "website-chat",
-          sessionId: crypto.randomUUID(),
+          message: userText, // ✅ Only send message
         }),
       });
 
       let botReply = "";
+
       try {
         const json = await res.json();
-        botReply = json.output || json.message || JSON.stringify(json);
+
+        // Embedded Chat usually returns:
+        // { output: "text" }
+        // or { message: "text" }
+
+        botReply =
+          json.output ||
+          json.message ||
+          json.text ||
+          (typeof json === "string" ? json : JSON.stringify(json));
       } catch {
         botReply = await res.text();
       }
 
       setMessages((prev) => [...prev, { role: "bot", content: botReply }]);
-    } catch {
+    } catch (err) {
+      console.error("Chat error:", err);
+
       setMessages((prev) => [
         ...prev,
-        { role: "bot", content: "⚠️ Something went wrong. Please try again." },
+        {
+          role: "bot",
+          content: "⚠️ Connection error. Please try again.",
+        },
       ]);
     } finally {
       setLoading(false);
@@ -75,8 +91,14 @@ export default function ChatSection() {
     setInput("");
     setLoading(false);
 
+    // NOTE: Embedded Chat session persists via cookies.
+    // Resetting UI does not reset backend memory.
+    // To fully reset memory, you'd need a reset endpoint.
+
     requestAnimationFrame(() => {
-      if (messagesRef.current) messagesRef.current.scrollTop = 0;
+      if (messagesRef.current) {
+        messagesRef.current.scrollTop = 0;
+      }
     });
   };
 
@@ -127,6 +149,7 @@ export default function ChatSection() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           />
+
           <button onClick={sendMessage}>Send</button>
         </div>
       </motion.div>

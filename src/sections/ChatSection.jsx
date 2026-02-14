@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-const CHAT_URL = import.meta.env.VITE_N8N_CHAT_WEBHOOK;
+const CHAT_URL =
+  "https://n8n.seyreon.com/webhook/60cdaf57-c25c-44d2-afa1-2e9983e3ba21/chat";
 
 const INITIAL_MESSAGE = {
   role: "bot",
@@ -34,17 +35,11 @@ export default function ChatSection() {
 
   const extractBotReply = (responseData) => {
     try {
-      // n8n Embedded Chat format
       if (responseData?.data?.[0]?.output) return responseData.data[0].output;
-
       if (responseData?.output) return responseData.output;
-
       if (responseData?.message) return responseData.message;
-
       if (responseData?.text) return responseData.text;
-
       if (typeof responseData === "string") return responseData;
-
       return JSON.stringify(responseData);
     } catch {
       return "⚠️ Error reading response.";
@@ -64,8 +59,8 @@ export default function ChatSection() {
     try {
       const res = await fetch(CHAT_URL, {
         method: "POST",
-        mode: "cors", // ✅ REQUIRED
-        credentials: "include", // ✅ REQUIRED for session cookies
+        mode: "cors",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -75,9 +70,7 @@ export default function ChatSection() {
         }),
       });
 
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const data = await res.json();
 
@@ -85,7 +78,7 @@ export default function ChatSection() {
 
       setMessages((prev) => [...prev, { role: "bot", content: botReply }]);
     } catch (error) {
-      console.error("Chat error:", error);
+      console.error(error);
 
       setMessages((prev) => [
         ...prev,
@@ -130,7 +123,7 @@ export default function ChatSection() {
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        <button className="chat-reset" onClick={resetChat} title="Reset chat">
+        <button className="chat-reset" onClick={resetChat}>
           ↻
         </button>
 

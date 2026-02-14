@@ -60,7 +60,6 @@ export default function ChatSection() {
       const res = await fetch(CHAT_URL, {
         method: "POST",
         mode: "cors",
-        credentials: "include",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",

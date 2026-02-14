@@ -32,47 +32,60 @@ export default function ChatSection() {
     el.scrollTop = el.scrollHeight;
   }, [messages, loading]);
 
+  const extractBotReply = (responseData) => {
+    try {
+      // n8n Embedded Chat format
+      if (responseData?.data?.[0]?.output) return responseData.data[0].output;
+
+      if (responseData?.output) return responseData.output;
+
+      if (responseData?.message) return responseData.message;
+
+      if (responseData?.text) return responseData.text;
+
+      if (typeof responseData === "string") return responseData;
+
+      return JSON.stringify(responseData);
+    } catch {
+      return "⚠️ Error reading response.";
+    }
+  };
+
   const sendMessage = async () => {
     if (!input.trim() || loading) return;
 
     const userText = input.trim();
+
     setInput("");
     setMessages((prev) => [...prev, { role: "user", content: userText }]);
+
     setLoading(true);
 
     try {
       const res = await fetch(CHAT_URL, {
         method: "POST",
-        credentials: "include", // ✅ REQUIRED for Embedded Chat session
+        mode: "cors", // ✅ REQUIRED
+        credentials: "include", // ✅ REQUIRED for session cookies
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify({
-          message: userText, // ✅ Only send message
+          message: userText,
         }),
       });
 
-      let botReply = "";
-
-      try {
-        const json = await res.json();
-
-        // Embedded Chat usually returns:
-        // { output: "text" }
-        // or { message: "text" }
-
-        botReply =
-          json.output ||
-          json.message ||
-          json.text ||
-          (typeof json === "string" ? json : JSON.stringify(json));
-      } catch {
-        botReply = await res.text();
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
       }
 
+      const data = await res.json();
+
+      const botReply = extractBotReply(data);
+
       setMessages((prev) => [...prev, { role: "bot", content: botReply }]);
-    } catch (err) {
-      console.error("Chat error:", err);
+    } catch (error) {
+      console.error("Chat error:", error);
 
       setMessages((prev) => [
         ...prev,
@@ -90,10 +103,6 @@ export default function ChatSection() {
     setMessages([INITIAL_MESSAGE]);
     setInput("");
     setLoading(false);
-
-    // NOTE: Embedded Chat session persists via cookies.
-    // Resetting UI does not reset backend memory.
-    // To fully reset memory, you'd need a reset endpoint.
 
     requestAnimationFrame(() => {
       if (messagesRef.current) {

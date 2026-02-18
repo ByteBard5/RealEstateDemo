@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useVoiceAssistant } from "../hooks/useVoiceAssistant";
+import { useRealtimeVoice } from "../hooks/useRealtimeVoice";
 
 /* =========================
    VISUALIZER COMPONENT
@@ -11,6 +11,7 @@ function Visualizer({ isActive }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
 
     let animationId;
@@ -31,10 +32,11 @@ function Visualizer({ isActive }) {
       for (let i = 0; i < lines; i++) {
         ctx.beginPath();
         ctx.lineWidth = 2;
-        ctx.strokeStyle = `rgba(120, 255, 180, ${0.3 + i * 0.15})`;
+        ctx.strokeStyle = `rgba(120,255,180,${0.3 + i * 0.15})`;
 
         for (let x = 0; x < width; x += 6) {
           const frequency = 0.01 + i * 0.004;
+
           const y =
             centerY +
             Math.sin(x * frequency + time + i) *
@@ -52,6 +54,7 @@ function Visualizer({ isActive }) {
     };
 
     render();
+
     return () => cancelAnimationFrame(animationId);
   }, [isActive]);
 
@@ -65,44 +68,54 @@ function Visualizer({ isActive }) {
 /* =========================
    MAIN VOICE SECTION
 ========================= */
+
 export default function VoiceSection() {
-  const { status, error, connect, disconnect } = useVoiceAssistant();
+  const { status, connect, disconnect } = useRealtimeVoice();
 
   const isActive = status === "connected";
+
   const isConnecting = status === "connecting";
 
   const [timeLeft, setTimeLeft] = useState(300);
+
   const timerRef = useRef(null);
+
   const disconnectRef = useRef(disconnect);
 
-  // keep stable reference
+  // keep latest disconnect ref
   useEffect(() => {
     disconnectRef.current = disconnect;
   }, [disconnect]);
 
   /* =========================
-     CLEAN COUNTDOWN LOGIC
+     COUNTDOWN TIMER
   ========================= */
+
   useEffect(() => {
     if (!isActive) {
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
       }
+
       setTimeLeft(300);
+
       return;
     }
 
-    if (timerRef.current) return; // prevent multiple intervals
+    if (timerRef.current) return;
 
     timerRef.current = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(timerRef.current);
           timerRef.current = null;
-          disconnectRef.current(); // stable disconnect
+
+          disconnectRef.current();
+
           return 300;
         }
+
         return prev - 1;
       });
     }, 1000);
@@ -116,6 +129,7 @@ export default function VoiceSection() {
   }, [isActive]);
 
   const minutes = String(Math.floor(timeLeft / 60)).padStart(2, "0");
+
   const seconds = String(timeLeft % 60).padStart(2, "0");
 
   const handleToggle = () => {
@@ -148,6 +162,7 @@ export default function VoiceSection() {
         <div className="voice-content">
           <div className="voice-left">
             <h2>Instant AI Calls. Zero Delays.</h2>
+
             <p>
               The AI voice assistant instantly calls every new lead, qualifies
               them, answers questions, and sends structured data directly into
@@ -158,12 +173,6 @@ export default function VoiceSection() {
               {isActive && <span className="live-dot" />}
               DEMO MODE • {minutes}:{seconds}
             </div>
-
-            {error && (
-              <div style={{ color: "#ff4d4d", marginBottom: "12px" }}>
-                {error}
-              </div>
-            )}
 
             <button
               className={`primary-btn ${isActive ? "danger" : ""}`}

@@ -28,8 +28,9 @@ export default function HeroSection() {
             </h1>
 
             <p>
-              Stay responsive across website, messaging, and calls — without
-              being available 24/7.
+              Speed is what determines who wins the deal — this system responds
+              instantly, qualifies prospects, and secures opportunities while
+              intent is highest.
             </p>
 
             <button className="primary-btn" onClick={scrollToCTA}>

@@ -2216,3 +2216,222 @@ CHANNELS SECTION END
 /* ==========================================================================================
    CTA SECTION END
 ========================================================================================== */
+/* ==========================================================================================
+CASE STUDY SECTION
+========================================================================================== */
+
+.case-study-section {
+  padding: clamp(100px, 12vh, 160px) clamp(20px, 6vw, 90px);
+
+  background: radial-gradient(circle at center, #2f4632 0%, #263425 60%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* INTRO */
+
+.case-study-intro {
+  max-width: 850px;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.case-study-intro h2 {
+  font-size: clamp(2.3rem, 4vw, 3.3rem);
+  color: white;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.case-study-intro p {
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.7;
+}
+
+/* GRID */
+
+.case-study-grid {
+  width: 100%;
+  max-width: 1200px;
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 28px;
+}
+
+.case-study-card-link {
+  text-decoration: none;
+}
+
+/* CARD */
+
+.case-study-card {
+  background: rgba(255, 255, 255, 0.05);
+
+  border-radius: 18px;
+
+  border: 1px solid rgba(140, 255, 200, 0.25);
+
+  backdrop-filter: blur(16px);
+
+  padding: 26px;
+
+  box-shadow:
+    0 0 40px rgba(140, 255, 200, 0.08),
+    inset 0 0 20px rgba(140, 255, 200, 0.03);
+
+  transition: all 0.3s ease;
+
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.case-study-card:hover {
+  border: 1px solid rgba(140, 255, 200, 0.45);
+
+  box-shadow:
+    0 0 45px rgba(140, 255, 200, 0.18),
+    inset 0 0 20px rgba(140, 255, 200, 0.05);
+
+  transform: translateY(-4px);
+}
+
+/* LABEL */
+
+.case-study-label {
+  color: #78ffb4;
+
+  font-size: 0.75rem;
+
+  font-weight: 600;
+
+  margin-bottom: 10px;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+}
+
+/* TITLE */
+
+.case-study-title {
+  color: white;
+
+  font-size: 1.35rem;
+
+  margin-bottom: 6px;
+
+  font-weight: 600;
+}
+
+/* SUBTITLE */
+
+.case-study-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 0.9rem;
+
+  margin-bottom: 14px;
+}
+
+/* DESCRIPTION */
+
+.case-study-description {
+  color: rgba(255, 255, 255, 0.82);
+
+  line-height: 1.6;
+
+  font-size: 0.95rem;
+
+  margin-bottom: 22px;
+}
+
+/* RESULTS */
+
+.case-study-results {
+  display: flex;
+
+  gap: 18px;
+
+  margin-bottom: 20px;
+
+  flex-wrap: wrap;
+}
+
+.case-study-result-item {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.case-study-result-value {
+  color: #78ffb4;
+
+  font-weight: 600;
+
+  font-size: 1.1rem;
+}
+
+.case-study-result-label {
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 0.8rem;
+}
+
+/* CTA */
+
+.case-study-view {
+  margin-top: auto;
+
+  color: #78ffb4;
+
+  font-size: 0.9rem;
+
+  font-weight: 500;
+}
+/* ==========================================================================================
+CASE STUDY SECTION END
+========================================================================================== */
+
+/* ============================================================
+GLOBAL LAYOUT SYSTEM (Professional solution)
+============================================================ */
+
+/* Full width section */
+
+.section-full {
+  width: 100%;
+
+  position: relative;
+}
+
+/* Centered content container */
+
+.container {
+  max-width: 1100px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-left: clamp(20px, 4vw, 40px);
+  padding-right: clamp(20px, 4vw, 40px);
+}
+
+/* Optional narrow container */
+
+.container-narrow {
+  max-width: 900px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-left: clamp(20px, 4vw, 40px);
+  padding-right: clamp(20px, 4vw, 40px);
+}

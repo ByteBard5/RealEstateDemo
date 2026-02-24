@@ -1,0 +1,2237 @@
+/* ================================================================
+Case Study Page Layout Wrapper Start
+=============================================================== */
+
+.casestudy-page {
+  width: 100%;
+
+  overflow-x: hidden;
+
+  background: radial-gradient(circle at center, #1c261d 0%, #0b120c 100%);
+
+  color: white;
+}
+
+/* ================================================================
+Case Study Page Layout Wrapper End
+=============================================================== */
+
+/* ================================================================
+Jawitz, New york Casestudy Hero section Start
+=============================================================== */
+
+.cs-hero {
+  position: relative;
+
+  padding: clamp(120px, 16vh, 200px) clamp(20px, 6vw, 90px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(120, 255, 180, 0.08),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(120, 255, 180, 0.06),
+      transparent 40%
+    ),
+    radial-gradient(circle at center, #2f4632 0%, #1c261d 60%, #121a13 100%);
+}
+
+/* container */
+
+.cs-hero-container {
+  max-width: 1000px;
+
+  text-align: center;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* eyebrow */
+
+.cs-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  margin-bottom: 26px;
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(120, 255, 180, 0.25);
+
+  backdrop-filter: blur(10px);
+}
+
+.cs-hero-eyebrow-dot {
+  width: 8px;
+  height: 8px;
+
+  background: #78ffb4;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 8px #78ffb4,
+    0 0 16px #78ffb4;
+
+  animation: pulseDot 1.4s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* headline */
+
+.cs-hero-headline {
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+
+  line-height: 1.2;
+
+  font-weight: 600;
+
+  color: white;
+
+  margin-bottom: 26px;
+}
+
+/* gradient text */
+
+.cs-hero-gradient-text {
+  background: linear-gradient(90deg, #78ffb4, #b9ffd8);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-size: 200% auto;
+
+  animation: shimmerGradient 4s linear infinite;
+}
+
+@keyframes shimmerGradient {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* subheadline */
+
+.cs-hero-subheadline {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+
+  color: rgba(255, 255, 255, 0.82);
+
+  line-height: 1.7;
+
+  margin-bottom: 22px;
+
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* supporting */
+
+.cs-hero-supporting {
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+
+  color: rgba(255, 255, 255, 0.65);
+
+  line-height: 1.7;
+
+  margin-bottom: 50px;
+
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* stats row */
+
+.cs-hero-stats {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 18px;
+
+  margin-top: 20px;
+}
+
+/* stat card */
+
+.cs-hero-stat-card {
+  padding: 22px 18px;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(120, 255, 180, 0.25);
+
+  backdrop-filter: blur(12px);
+
+  transition: all 0.35s ease;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-hero-stat-card:hover {
+  transform: translateY(-6px);
+
+  border: 1px solid rgba(120, 255, 180, 0.5);
+
+  box-shadow:
+    0 0 30px rgba(120, 255, 180, 0.15),
+    inset 0 0 12px rgba(120, 255, 180, 0.05);
+}
+
+/* shimmer effect */
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+
+  animation: shimmerMove 3s infinite;
+}
+
+@keyframes shimmerMove {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* stat value */
+
+.cs-hero-stat-value {
+  font-size: 1.8rem;
+
+  color: #78ffb4;
+
+  font-weight: 600;
+
+  margin-bottom: 6px;
+}
+
+/* stat label */
+
+.cs-hero-stat-label {
+  font-size: 0.9rem;
+
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* background glow */
+
+.cs-hero-bg-glow {
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  filter: blur(120px);
+
+  opacity: 0.25;
+
+  animation: floatGlow 8s ease-in-out infinite;
+}
+
+.cs-hero-glow-1 {
+  background: #78ffb4;
+
+  top: -100px;
+  left: -100px;
+}
+
+.cs-hero-glow-2 {
+  background: #78ffb4;
+
+  bottom: -120px;
+  right: -120px;
+
+  animation-delay: 3s;
+}
+
+@keyframes floatGlow {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+/* ================================================================
+Responsive
+=============================================================== */
+
+@media (max-width: 900px) {
+  .cs-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cs-hero {
+    padding: 100px 18px;
+  }
+
+  .cs-hero-headline {
+    font-size: 2rem;
+  }
+
+  .cs-hero-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================================
+Jawitz, New York Casestudy Hero section End
+=============================================================== */
+/* ================================================================
+Jawitz, New york Casestudy Introduction section Start
+=============================================================== */
+
+.cs-section {
+  position: relative;
+
+  padding: clamp(140px, 18vh, 200px) clamp(20px, 6vw, 90px);
+
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(120, 255, 180, 0.08),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(120, 255, 180, 0.06),
+      transparent 40%
+    ),
+    radial-gradient(circle at center, #2f4632 0%, #1c261d 60%, #121a13 100%);
+
+  overflow: hidden;
+}
+
+/* ============================================
+CONTAINER SYSTEM
+============================================ */
+
+.cs-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ============================================
+HEADER SYSTEM
+============================================ */
+
+.cs-section-header {
+  max-width: 900px;
+  margin: 0 auto 120px auto;
+  text-align: center;
+}
+
+.cs-section-eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #78ffb4;
+  margin-bottom: 18px;
+}
+
+.cs-section-title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 24px;
+  position: relative;
+  display: inline-block;
+}
+
+/* ENERGY LINE */
+
+.cs-section-title::after {
+  content: "";
+
+  display: block;
+
+  width: clamp(180px, 28vw, 340px);
+
+  height: 3px;
+
+  margin: 18px auto 0 auto;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #78ffb4 20%,
+    #78ffb4 50%,
+    #78ffb4 80%,
+    transparent 100%
+  );
+
+  background-size: 200% 100%;
+
+  animation: energyFlow 3s linear infinite;
+
+  box-shadow:
+    0 0 10px rgba(120, 255, 180, 0.7),
+    0 0 20px rgba(120, 255, 180, 0.5),
+    0 0 40px rgba(120, 255, 180, 0.3);
+}
+
+@keyframes energyFlow {
+  0% {
+    background-position: -100% center;
+    opacity: 0.6;
+  }
+
+  50% {
+    background-position: 0% center;
+    opacity: 1;
+  }
+
+  100% {
+    background-position: 100% center;
+    opacity: 0.6;
+  }
+}
+
+/* ============================================
+BODY
+============================================ */
+
+.cs-intro-body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/* infrastructure spine */
+
+.cs-intro-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+
+  background: linear-gradient(to bottom, transparent, #78ffb4, transparent);
+
+  animation: spineFlow 4s linear infinite;
+
+  opacity: 0.6;
+}
+
+@keyframes spineFlow {
+  0% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
+/* CONTENT */
+
+.cs-intro-content {
+  padding-left: 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* TEXT */
+
+.cs-intro-content p {
+  font-size: clamp(15px, 1.1vw, 18px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ============================================
+HIGHLIGHT CARD
+============================================ */
+
+.cs-intro-highlight {
+  position: relative;
+
+  padding: 32px;
+
+  border-radius: 16px;
+
+  background: rgba(120, 255, 180, 0.05);
+
+  border: 1px solid rgba(120, 255, 180, 0.25);
+
+  overflow: hidden;
+}
+
+.cs-highlight-strong {
+  color: #ffffff;
+}
+
+/* animated glow border */
+
+.cs-highlight-glow {
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(120, 255, 180, 0.4),
+    transparent
+  );
+
+  animation: highlightFlow 4s linear infinite;
+}
+
+@keyframes highlightFlow {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ============================================
+GRID BACKGROUND ANIMATION
+============================================ */
+
+.cs-grid-bg {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(120, 255, 180, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 255, 180, 0.05) 1px, transparent 1px);
+
+  background-size: 80px 80px;
+
+  animation: gridMove 20s linear infinite;
+
+  opacity: 0.3;
+}
+
+@keyframes gridMove {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(80px);
+  }
+}
+
+/* ============================================
+PARTICLES
+============================================ */
+
+.cs-particles span {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  background: #78ffb4;
+
+  border-radius: 50%;
+
+  animation: floatParticle 12s infinite linear;
+}
+
+.cs-particles span:nth-child(1) {
+  left: 10%;
+  top: 80%;
+  animation-delay: 0s;
+}
+.cs-particles span:nth-child(2) {
+  left: 40%;
+  top: 90%;
+  animation-delay: 3s;
+}
+.cs-particles span:nth-child(3) {
+  left: 70%;
+  top: 85%;
+  animation-delay: 6s;
+}
+.cs-particles span:nth-child(4) {
+  left: 85%;
+  top: 95%;
+  animation-delay: 9s;
+}
+
+@keyframes floatParticle {
+  from {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-800px);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+SCROLL REVEAL
+============================================ */
+
+.cs-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* ============================================
+RESPONSIVE
+============================================ */
+
+@media (max-width: 768px) {
+  .cs-intro-content {
+    padding-left: 20px;
+  }
+
+  .cs-intro-spine {
+    left: 5px;
+  }
+}
+/* ================================================================
+Jawitz, New york Casestudy Introduction section End
+=============================================================== */
+/* ================================================================
+Jawitz, New York Casestudy Problem section Start
+=============================================================== */
+
+.cs-problem-section {
+  position: relative;
+}
+
+/* animated background flow */
+
+.cs-problem-bg-flow {
+  position: absolute;
+  inset: 0;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 60px,
+    rgba(120, 255, 180, 0.04) 61px,
+    transparent 62px
+  );
+
+  animation: problemFlow 12s linear infinite;
+
+  opacity: 0.3;
+}
+
+@keyframes problemFlow {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(120px);
+  }
+}
+
+/* timeline */
+
+.cs-problem-timeline {
+  position: relative;
+
+  max-width: 800px;
+
+  margin: 0 auto;
+
+  padding-left: 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* vertical line */
+
+.cs-problem-line {
+  position: absolute;
+
+  left: 8px;
+  top: 0;
+  bottom: 0;
+
+  width: 2px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(120, 255, 180, 0.8),
+    transparent
+  );
+
+  animation: problemLinePulse 4s ease-in-out infinite;
+}
+
+@keyframes problemLinePulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* item */
+
+.cs-problem-item {
+  position: relative;
+}
+
+/* node */
+
+.cs-problem-node {
+  position: absolute;
+
+  left: -36px;
+  top: 8px;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  background: #78ffb4;
+
+  box-shadow:
+    0 0 10px rgba(120, 255, 180, 0.9),
+    0 0 20px rgba(120, 255, 180, 0.6),
+    0 0 40px rgba(120, 255, 180, 0.3);
+
+  animation: nodePulse 3s infinite;
+}
+
+@keyframes nodePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.4);
+  }
+}
+
+/* content */
+
+.cs-problem-content {
+  font-size: clamp(15px, 1.1vw, 18px);
+
+  line-height: 1.8;
+
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* reveal */
+
+.cs-problem-reveal {
+  opacity: 0;
+
+  transform: translateY(40px);
+
+  transition: all 0.8s ease;
+}
+
+/* responsive */
+
+@media (max-width: 768px) {
+  .cs-problem-timeline {
+    padding-left: 30px;
+  }
+
+  .cs-problem-node {
+    left: -30px;
+  }
+}
+/* ================================================================
+Jawitz and New york Casestudy Problem section End
+=============================================================== */
+/* ================================================================
+Jawitz Casestudy Solution section Start
+=============================================================== */
+
+.cs-solution-architecture {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 30px;
+
+  margin-top: 70px;
+
+  position: relative;
+}
+
+/* CARD */
+
+.cs-solution-arch-card {
+  position: relative;
+
+  background: rgba(120, 255, 180, 0.04);
+
+  border: 1px solid rgba(120, 255, 180, 0.2);
+
+  border-radius: 16px;
+
+  padding: 30px;
+
+  backdrop-filter: blur(12px);
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  transform: translateY(40px) scale(0.98);
+
+  transition: 0.8s ease;
+}
+
+/* hover */
+
+.cs-solution-arch-card:hover {
+  transform: translateY(-6px) scale(1.02);
+
+  border-color: rgba(120, 255, 180, 0.5);
+
+  box-shadow: 0 0 25px rgba(120, 255, 180, 0.15);
+}
+
+/* icon */
+
+.cs-arch-icon {
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 10px;
+
+  background: rgba(120, 255, 180, 0.1);
+
+  border: 1px solid rgba(120, 255, 180, 0.4);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-weight: 600;
+
+  font-size: 14px;
+
+  color: #78ffb4;
+
+  margin-bottom: 16px;
+}
+
+/* title */
+
+.cs-arch-content h3 {
+  font-size: clamp(18px, 1.3vw, 22px);
+
+  margin-bottom: 12px;
+
+  color: #ffffff;
+}
+
+/* text */
+
+.cs-arch-content p {
+  font-size: clamp(15px, 1.05vw, 17px);
+
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* animated glow */
+
+.cs-arch-glow {
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(120, 255, 180, 0.2),
+    transparent
+  );
+
+  opacity: 0;
+
+  transition: 0.6s;
+}
+
+.cs-solution-arch-card:hover .cs-arch-glow {
+  opacity: 1;
+
+  animation: archGlowMove 3s linear infinite;
+}
+
+@keyframes archGlowMove {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* connection lines */
+
+.cs-solution-architecture::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(120, 255, 180, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 255, 180, 0.08) 1px, transparent 1px);
+
+  background-size: 60px 60px;
+
+  opacity: 0.3;
+
+  pointer-events: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .cs-solution-architecture {
+    grid-template-columns: 1fr;
+  }
+}
+/* ================================================================
+Jawitz Casestudy Solution section End
+=============================================================== */
+/* ================================================================
+Jawitz Casestudy System Breakdown section Start
+=============================================================== */
+
+.cs-system-content {
+  margin-top: 120px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 100px;
+
+  position: relative;
+}
+
+/* BLOCK */
+
+.cs-system-block {
+  display: flex;
+
+  width: 100%;
+
+  opacity: 0;
+
+  transform: translateY(80px) scale(0.95);
+
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+}
+
+.cs-system-block.active {
+  opacity: 1;
+
+  transform: translateY(0) scale(1);
+}
+
+/* ALIGNMENT */
+
+.cs-system-block.left {
+  justify-content: flex-start;
+}
+
+.cs-system-block.right {
+  justify-content: flex-end;
+}
+
+/* PANEL */
+
+.cs-system-block-inner {
+  max-width: 640px;
+
+  padding: 46px 50px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.02);
+
+  border: 1px solid rgba(120, 255, 180, 0.18);
+
+  backdrop-filter: blur(14px);
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition: all 0.45s ease;
+}
+
+/* Mouse reactive glow */
+
+.cs-system-block-inner::before {
+  content: "";
+
+  position: absolute;
+
+  left: var(--mouse-x);
+
+  top: var(--mouse-y);
+
+  width: 300px;
+
+  height: 300px;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(120, 255, 180, 0.18),
+    transparent 60%
+  );
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+
+  pointer-events: none;
+}
+
+.cs-system-block-inner:hover::before {
+  opacity: 1;
+}
+
+/* Hover lift */
+
+.cs-system-block-inner:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(120, 255, 180, 0.45);
+
+  box-shadow: 0 0 40px rgba(120, 255, 180, 0.08);
+}
+
+/* Progress line */
+
+.cs-system-progress-line {
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  width: 3px;
+
+  height: 0%;
+
+  background: linear-gradient(to bottom, #78ffb4, rgba(120, 255, 180, 0.2));
+
+  transition: height 1.2s ease;
+}
+
+.cs-system-block.active .cs-system-progress-line {
+  height: 100%;
+}
+
+/* Step number */
+
+.cs-system-step-number {
+  font-size: 13px;
+
+  letter-spacing: 3px;
+
+  color: #78ffb4;
+
+  margin-bottom: 16px;
+
+  opacity: 0.7;
+}
+
+/* Title */
+
+.cs-system-block-title {
+  font-size: 28px;
+
+  color: white;
+
+  margin-bottom: 18px;
+
+  line-height: 1.3;
+}
+
+/* Text */
+
+.cs-system-block-text {
+  font-size: 17px;
+
+  line-height: 1.75;
+
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Animated accent dot */
+
+.cs-system-accent-dot {
+  position: absolute;
+
+  right: 20px;
+
+  top: 20px;
+
+  width: 8px;
+
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #78ffb4;
+
+  box-shadow:
+    0 0 10px #78ffb4,
+    0 0 20px #78ffb4;
+
+  animation: csPulse 2s infinite;
+}
+
+@keyframes csPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.6);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Progressive scroll highlight */
+
+.cs-system-block.active .cs-system-block-inner {
+  border-color: rgba(120, 255, 180, 0.35);
+
+  box-shadow: 0 0 60px rgba(120, 255, 180, 0.06);
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+  .cs-system-content {
+    gap: 60px;
+  }
+
+  .cs-system-block {
+    justify-content: center !important;
+  }
+
+  .cs-system-block-inner {
+    max-width: 100%;
+
+    padding: 34px;
+  }
+
+  .cs-system-block-title {
+    font-size: 22px;
+  }
+
+  .cs-system-block-text {
+    font-size: 16px;
+  }
+}
+/* ================================================================
+Jawitz Casestudy System Breakdown section End
+=============================================================== */
+/* ================================================================
+Jawitz Casestudy Results section Start
+=============================================================== */
+
+.cs-kpi-strip {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+.cs-kpi {
+  flex: 1;
+  min-width: 180px;
+  position: relative;
+}
+
+/* animated number */
+
+.cs-kpi span {
+  display: block;
+  font-size: 38px;
+  font-weight: 600;
+  color: #78ffb4;
+  letter-spacing: 0.5px;
+
+  text-shadow: 0 0 10px rgba(120, 255, 180, 0.35);
+
+  animation: numberPulse 3s ease-in-out infinite;
+
+  transition: transform 0.3s ease;
+}
+
+/* hover lift */
+
+.cs-kpi:hover span {
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* glow animation */
+
+@keyframes numberPulse {
+  0% {
+    text-shadow: 0 0 8px rgba(120, 255, 180, 0.25);
+  }
+
+  50% {
+    text-shadow: 0 0 18px rgba(120, 255, 180, 0.7);
+  }
+
+  100% {
+    text-shadow: 0 0 8px rgba(120, 255, 180, 0.25);
+  }
+}
+
+.cs-kpi label {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+}
+
+/* ============================================
+   CHART CARD
+============================================ */
+
+.cs-chart-card {
+  margin-top: 70px;
+  padding: 42px;
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.02);
+
+  border: 1px solid rgba(120, 255, 180, 0.15);
+
+  backdrop-filter: blur(10px);
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.4s ease,
+    border 0.4s ease;
+}
+
+/* subtle lift */
+
+.cs-chart-card:hover {
+  transform: translateY(-4px);
+  border: 1px solid rgba(120, 255, 180, 0.35);
+}
+
+/* sweeping glow */
+
+.cs-chart-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -40%;
+
+  width: 40%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(120, 255, 180, 0.08),
+    transparent
+  );
+
+  animation: cardSweep 6s linear infinite;
+}
+
+@keyframes cardSweep {
+  0% {
+    left: -40%;
+  }
+
+  100% {
+    left: 140%;
+  }
+}
+
+/* ============================================
+   CHART HEADER
+============================================ */
+
+.cs-chart-header {
+  font-size: 18px;
+  font-weight: 500;
+  color: #78ffb4;
+  margin-bottom: 30px;
+  letter-spacing: 0.4px;
+}
+
+/* ============================================
+   CHART ROW
+============================================ */
+
+.cs-chart-row {
+  margin-bottom: 26px;
+
+  opacity: 0;
+
+  transform: translateX(-20px);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.cs-chart-row.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cs-chart-row:last-child {
+  margin-bottom: 0;
+}
+
+.cs-chart-label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.7);
+
+  transition: color 0.3s ease;
+}
+
+.cs-chart-row:hover .cs-chart-label {
+  color: #78ffb4;
+}
+
+/* ============================================
+   BAR CONTAINER
+============================================ */
+
+.cs-chart-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ============================================
+   BAR BASE
+============================================ */
+
+.cs-bar {
+  height: 22px;
+  border-radius: 6px;
+
+  position: relative;
+
+  transition:
+    width 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.4s ease,
+    transform 0.3s ease;
+
+  overflow: hidden;
+}
+
+/* hover lift */
+
+.cs-chart-row:hover .cs-bar {
+  transform: scaleY(1.08);
+}
+
+/* BEFORE BAR */
+
+.cs-bar-before {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* AFTER BAR PREMIUM */
+
+.cs-bar-after {
+  background: linear-gradient(90deg, #78ffb4 0%, #4fd1ff 100%);
+
+  box-shadow:
+    0 0 12px rgba(120, 255, 180, 0.6),
+    0 0 25px rgba(120, 255, 180, 0.25);
+
+  animation: barBreath 3s ease-in-out infinite;
+}
+
+/* breathing animation */
+
+@keyframes barBreath {
+  0% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.35);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+/* moving highlight */
+
+.cs-bar-after::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -60%;
+
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+
+  animation: barSweep 3s linear infinite;
+}
+
+@keyframes barSweep {
+  0% {
+    left: -60%;
+  }
+
+  100% {
+    left: 160%;
+  }
+}
+
+/* BAR TEXT */
+
+.cs-bar span {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* ============================================
+   LEGEND
+============================================ */
+
+.cs-chart-legend {
+  display: flex;
+  gap: 24px;
+  margin-top: 25px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.legend-before,
+.legend-after {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  border-radius: 3px;
+}
+
+.legend-before {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.legend-after {
+  background: linear-gradient(90deg, #78ffb4, #4fd1ff);
+}
+
+/* ============================================
+   RESULTS CONTENT (PREMIUM PARAGRAPHS)
+============================================ */
+
+.cs-results-content {
+  margin-top: 70px;
+  max-width: 920px;
+}
+
+/* paragraph base */
+
+.cs-paragraph {
+  opacity: 0;
+
+  transform: translateY(30px);
+
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease,
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+
+  margin-bottom: 22px;
+
+  color: rgba(255, 255, 255, 0.75);
+
+  font-size: 16px;
+
+  line-height: 1.75;
+
+  position: relative;
+
+  padding-left: 18px;
+}
+
+/* reveal */
+
+.cs-paragraph.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* premium left accent line */
+
+.cs-paragraph::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 6px;
+
+  width: 3px;
+
+  height: 0%;
+
+  background: linear-gradient(to bottom, #78ffb4, #4fd1ff);
+
+  border-radius: 2px;
+
+  transition: height 0.6s ease;
+}
+
+.cs-paragraph.visible::before {
+  height: 85%;
+}
+
+/* hover glow effect */
+
+.cs-paragraph:hover {
+  color: rgba(255, 255, 255, 0.95);
+
+  text-shadow: 0 0 8px rgba(120, 255, 180, 0.25);
+}
+
+/* ============================================
+   TABLET
+============================================ */
+
+@media (max-width: 900px) {
+  .cs-kpi span {
+    font-size: 32px;
+  }
+
+  .cs-chart-card {
+    padding: 28px;
+  }
+
+  .cs-bar {
+    height: 20px;
+  }
+
+  .cs-results-content {
+    margin-top: 50px;
+  }
+
+  .cs-paragraph {
+    font-size: 15px;
+  }
+}
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media (max-width: 600px) {
+  .cs-kpi-strip {
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .cs-kpi span {
+    font-size: 28px;
+  }
+
+  .cs-chart-card {
+    padding: 20px;
+  }
+
+  .cs-bar {
+    height: 18px;
+  }
+
+  .cs-paragraph {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+/* ================================================================
+Jawitz Casestudy Results section End
+=============================================================== */
+/* ================================================================
+   Jawitz Casestudy Conclusion section Start
+=============================================================== */
+.cs-conclusion-section {
+  position: relative;
+}
+
+.cs-conclusion-header {
+  max-width: 800px;
+}
+
+/* =========================================
+   NEW ROW-BASED LAYOUT
+========================================= */
+
+.cs-conclusion-rows {
+  margin-top: 90px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  position: relative;
+}
+
+/* =========================================
+   LABEL ROW
+========================================= */
+
+.cs-conclusion-label-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.cs-conclusion-label {
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.7s ease;
+
+  position: relative;
+}
+
+.cs-conclusion-reveal.active .cs-conclusion-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* LEFT LABEL */
+
+.cs-conclusion-label.before {
+  color: rgba(255, 255, 255, 0.42);
+  text-align: left;
+}
+
+.cs-conclusion-label.before::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* RIGHT LABEL */
+
+.cs-conclusion-label.after {
+  color: #78ffb4;
+  text-align: left;
+}
+
+.cs-conclusion-label.after::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, #78ffb4, rgba(120, 255, 180, 0.2));
+}
+
+/* =========================================
+   EACH ROW
+========================================= */
+
+.cs-conclusion-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: center;
+
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(30px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.cs-conclusion-reveal.active.cs-conclusion-row,
+.cs-conclusion-reveal.active .cs-conclusion-row {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   CELLS
+========================================= */
+
+.cs-conclusion-cell {
+  position: relative;
+  font-size: 16.5px;
+  line-height: 1.85;
+  transition: color 0.35s ease;
+}
+
+/* BEFORE */
+
+.cs-conclusion-cell.before {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.cs-conclusion-cell.before:hover {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.cs-conclusion-cell.before .cs-point-line {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+
+  width: 40px;
+  height: 2px;
+
+  background: linear-gradient(to right, rgba(120, 255, 180, 0.55), transparent);
+
+  transform: translateY(-50%);
+}
+
+/* AFTER */
+
+.cs-conclusion-cell.after {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.cs-conclusion-cell.after:hover {
+  color: #78ffb4;
+}
+
+/* ❌ REMOVED GREEN OVAL GLOW COMPLETELY */
+.cs-point-glow {
+  display: none;
+}
+
+/* =========================================
+   CENTER DOT
+========================================= */
+
+.cs-conclusion-center-dot {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: #78ffb4;
+
+  justify-self: center;
+
+  box-shadow: 0 0 6px rgba(120, 255, 180, 0.6);
+}
+
+/* ❌ REMOVED EXTRA BLUR THAT CAUSED GLOW SPREAD */
+.cs-conclusion-center-dot::after {
+  display: none;
+}
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.cs-conclusion-rows::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  top: 0;
+  bottom: 0;
+
+  width: 2px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(120, 255, 180, 0.4),
+    transparent
+  );
+}
+
+/* =========================================
+   SCAN LINE
+========================================= */
+
+.cs-scan-line {
+  position: absolute;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  top: -10%;
+
+  width: 2px;
+  height: 60px;
+
+  background: linear-gradient(to bottom, transparent, #78ffb4, transparent);
+
+  opacity: 0;
+}
+
+.scan-active .cs-scan-line {
+  opacity: 1;
+  animation: scanMove 2.5s ease-out forwards;
+}
+
+@keyframes scanMove {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   FINAL STATEMENT
+========================================= */
+
+.cs-conclusion-final-statement {
+  margin-top: 90px;
+  max-width: 900px;
+
+  font-size: 18px;
+  line-height: 1.9;
+
+  color: rgba(255, 255, 255, 0.92);
+
+  opacity: 0;
+  transform: translateY(30px);
+
+  transition: all 1s ease;
+}
+
+.cs-conclusion-final-statement.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cs-conclusion-final-statement.active::before {
+  width: 80px;
+}
+
+/* =========================================
+   STATUS
+========================================= */
+
+.cs-conclusion-status {
+  margin-top: 80px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #78ffb4;
+  font-size: 14px;
+
+  opacity: 0;
+  transform: translateY(15px);
+
+  transition: all 0.7s ease;
+}
+
+.cs-conclusion-status.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cs-status-dot {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+  background: #78ffb4;
+
+  animation: statusPulse 1.5s infinite;
+}
+
+@keyframes statusPulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .cs-conclusion-row,
+  .cs-conclusion-label-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .cs-conclusion-center-dot,
+  .cs-conclusion-rows::before,
+  .cs-scan-line {
+    display: none;
+  }
+}
+/* ================================================================
+   Jawitz Casestudy Conclusion section End
+=============================================================== */
+/* ================================================================
+Jawitz Casestudy CTA section Start
+=============================================================== */
+.cs-cta-section {
+  text-align: center;
+
+  padding-bottom: 140px;
+
+  opacity: 0;
+
+  transform: translateY(40px);
+
+  transition: 1s ease;
+}
+
+.cs-cta-section.active {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+/* Header */
+
+.cs-cta-header {
+  max-width: 800px;
+
+  margin: auto;
+}
+
+.cs-cta-subtext {
+  margin-top: 20px;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 17px;
+
+  line-height: 1.8;
+}
+
+/* Buttons container */
+
+.cs-cta-actions {
+  margin-top: 50px;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 20px;
+
+  flex-wrap: wrap;
+}
+
+/* Button base */
+
+.cs-cta-btn {
+  position: relative;
+
+  padding: 16px 32px;
+
+  font-size: 15px;
+
+  letter-spacing: 0.5px;
+
+  border-radius: 8px;
+
+  text-decoration: none;
+
+  overflow: hidden;
+
+  transition: 0.4s ease;
+}
+
+/* Glow sweep */
+
+.cs-btn-glow {
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+
+  transform: translateX(-100%);
+}
+
+.cs-cta-btn:hover .cs-btn-glow {
+  animation: glowSweep 0.8s forwards;
+}
+
+@keyframes glowSweep {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Primary button */
+
+.cs-cta-primary {
+  background: #78ffb4;
+
+  color: black;
+
+  box-shadow: 0 0 20px rgba(120, 255, 180, 0.4);
+}
+
+.cs-cta-primary:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 0 40px rgba(120, 255, 180, 0.7);
+}
+
+/* Secondary button */
+
+.cs-cta-secondary {
+  border: 1px solid rgba(120, 255, 180, 0.4);
+
+  color: #78ffb4;
+}
+
+.cs-cta-secondary:hover {
+  background: rgba(120, 255, 180, 0.08);
+
+  transform: translateY(-3px);
+}
+
+/* Status */
+
+.cs-cta-status {
+  margin-top: 50px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: rgba(120, 255, 180, 0.8);
+
+  font-size: 14px;
+}
+
+/* Status dot */
+
+.cs-status-dot {
+  width: 10px;
+
+  height: 10px;
+
+  background: #78ffb4;
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 10px #78ffb4;
+
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .cs-cta-btn {
+    width: 100%;
+
+    text-align: center;
+  }
+}
+/* ================================================================
+Jawitz Casestudy CTA section End
+=============================================================== */

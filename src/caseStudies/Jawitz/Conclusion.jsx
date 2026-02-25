@@ -1,33 +1,111 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import "../../styles/casestudy.css";
 
 export default function Conclusion() {
   const sectionRef = useRef(null);
+
   const [scanActive, setScanActive] = useState(false);
 
   /* =========================================
-     POINT DATA (PAIRED ROWS)
+     DATA
   ========================================= */
 
-  const beforePoints = [
-    "Lead handling depended entirely on human availability.",
-    "Response time varied, causing delays and lost opportunities.",
-    "Agents spent time filtering and coordinating manually.",
-    "Operational capacity was limited by workload.",
-  ];
+  const beforePoints = useMemo(
+    () => [
+      "Lead handling depended entirely on human availability.",
+      "Response time varied, causing delays and lost opportunities.",
+      "Agents spent time filtering and coordinating manually.",
+      "Operational capacity was limited by workload.",
+    ],
+    [],
+  );
 
-  const afterPoints = [
-    "Every inquiry is captured and processed automatically.",
-    "Qualification, routing, and engagement operate instantly.",
-    "Agents receive qualified prospects with full context.",
-    "Infrastructure now supports scalable and consistent growth.",
-  ];
+  const afterPoints = useMemo(
+    () => [
+      "Every inquiry is captured and processed automatically.",
+      "Qualification, routing, and engagement operate instantly.",
+      "Agents receive qualified prospects with full context.",
+      "Infrastructure now supports scalable and consistent growth.",
+    ],
+    [],
+  );
 
   const finalStatement =
     "Automation now functions as core operational infrastructure — aligning the business with its demand, removing operational friction, and ensuring no opportunity is lost between inquiry and conversion.";
 
   /* =========================================
-     REVEAL + SCAN ACTIVATION
+     DISPLAY STATE
+  ========================================= */
+
+  const [displayManual, setDisplayManual] = useState(beforePoints);
+
+  const [manualHoverIndex, setManualHoverIndex] = useState(null);
+  const [autoHoverIndex, setAutoHoverIndex] = useState(null);
+
+  const scrambleIntervalRef = useRef(null);
+
+  /* =========================================
+     SCRAMBLE FUNCTION
+  ========================================= */
+
+  function scramblePositions(text) {
+    const chars = text.split("");
+
+    const letterIndexes = [];
+
+    for (let i = 0; i < chars.length; i++) {
+      if (chars[i] !== " ") {
+        letterIndexes.push(i);
+      }
+    }
+
+    const result = [...chars];
+
+    const swaps = Math.floor(letterIndexes.length * 0.35);
+
+    for (let i = 0; i < swaps; i++) {
+      const indexA =
+        letterIndexes[Math.floor(Math.random() * letterIndexes.length)];
+
+      const indexB =
+        letterIndexes[Math.floor(Math.random() * letterIndexes.length)];
+
+      const temp = result[indexA];
+      result[indexA] = result[indexB];
+      result[indexB] = temp;
+    }
+
+    return result.join("");
+  }
+
+  /* =========================================
+     SCRAMBLE CONTROLLER
+  ========================================= */
+
+  useEffect(() => {
+    if (manualHoverIndex === null) {
+      clearInterval(scrambleIntervalRef.current);
+      scrambleIntervalRef.current = null;
+
+      setDisplayManual(beforePoints);
+      return;
+    }
+
+    const originalText = beforePoints[manualHoverIndex];
+
+    scrambleIntervalRef.current = setInterval(() => {
+      setDisplayManual((prev) => {
+        const updated = [...prev];
+        updated[manualHoverIndex] = scramblePositions(originalText);
+        return updated;
+      });
+    }, 140);
+
+    return () => clearInterval(scrambleIntervalRef.current);
+  }, [manualHoverIndex, beforePoints]);
+
+  /* =========================================
+     REVEAL + SCAN
   ========================================= */
 
   useEffect(() => {
@@ -45,11 +123,7 @@ export default function Conclusion() {
           }, index * 140);
         });
 
-        /* activate scan line allowing CSS animation */
-
-        setTimeout(() => {
-          setScanActive(true);
-        }, 500);
+        setTimeout(() => setScanActive(true), 500);
       },
       { threshold: 0.3 },
     );
@@ -58,6 +132,39 @@ export default function Conclusion() {
 
     return () => observer.disconnect();
   }, []);
+
+  /* =========================================
+     LETTER RENDERER
+  ========================================= */
+
+  function renderManualText(text, isHovering) {
+    const letters = text.split("");
+
+    return letters.map((char, i) => {
+      if (char === " ")
+        return (
+          <span key={i} className="manual-letter space">
+            &nbsp;
+          </span>
+        );
+
+      const randomSeed = (i * 37) % 100;
+
+      const shouldBeRed = isHovering && randomSeed % 7 === 0;
+
+      return (
+        <span
+          key={i}
+          className={`manual-letter ${shouldBeRed ? "loss-letter" : ""}`}
+          style={{
+            "--seed": randomSeed,
+          }}
+        >
+          {char}
+        </span>
+      );
+    });
+  }
 
   /* =========================================
      COMPONENT
@@ -85,52 +192,70 @@ export default function Conclusion() {
           </h2>
         </div>
 
-        {/* ROW-ALIGNED TRANSFORMATION GRID */}
+        {/* ROW GRID */}
 
         <div className="cs-conclusion-rows">
           {/* LABEL ROW */}
 
           <div className="cs-conclusion-label-row cs-conclusion-reveal">
-            {/* LEFT LABEL */}
-
             <div className="cs-conclusion-label before">Manual Workflow</div>
 
-            {/* CENTER EMPTY */}
-
             <div></div>
-
-            {/* RIGHT LABEL */}
 
             <div className="cs-conclusion-label after">
               Automated Infrastructure
             </div>
           </div>
 
-          {/* ROW PAIRS */}
+          {/* ROWS */}
 
-          {beforePoints.map((beforeText, index) => (
-            <div key={index} className="cs-conclusion-row cs-conclusion-reveal">
-              {/* BEFORE CELL */}
+          {beforePoints.map((beforeText, index) => {
+            const manualFear = autoHoverIndex === index;
+            const manualChaos = manualHoverIndex === index;
+            const autoActive = autoHoverIndex === index;
 
-              <div className="cs-conclusion-cell before">
-                <span className="cs-point-text">{beforeText}</span>
+            return (
+              <div
+                key={index}
+                className="cs-conclusion-row cs-conclusion-reveal"
+              >
+                {/* MANUAL */}
 
-                <span className="cs-point-line"></span>
+                <div
+                  className={`
+                    cs-conclusion-cell before
+                    ${manualFear ? "manual-fear" : ""}
+                    ${manualChaos ? "manual-chaos" : ""}
+                  `}
+                  onMouseEnter={() => setManualHoverIndex(index)}
+                  onMouseLeave={() => setManualHoverIndex(null)}
+                >
+                  <span className="cs-point-text manual-text-inner">
+                    {renderManualText(displayManual[index], manualChaos)}
+                  </span>
+
+                  <span className="cs-point-line"></span>
+                </div>
+
+                {/* CENTER DOT */}
+
+                <div className="cs-conclusion-center-dot"></div>
+
+                {/* AUTOMATED */}
+
+                <div
+                  className={`
+                    cs-conclusion-cell after
+                    ${autoActive ? "auto-active bold-active" : ""}
+                  `}
+                  onMouseEnter={() => setAutoHoverIndex(index)}
+                  onMouseLeave={() => setAutoHoverIndex(null)}
+                >
+                  <span className="cs-point-text">{afterPoints[index]}</span>
+                </div>
               </div>
-
-              {/* CENTER DOT */}
-
-              <div className="cs-conclusion-center-dot"></div>
-
-              {/* AFTER CELL */}
-
-              <div className="cs-conclusion-cell after">
-                <span className="cs-point-text">{afterPoints[index]}</span>
-
-                <span className="cs-point-glow"></span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
 
           {/* SCAN LINE */}
 
@@ -143,7 +268,7 @@ export default function Conclusion() {
           {finalStatement}
         </div>
 
-        {/* SYSTEM STATUS */}
+        {/* STATUS */}
 
         <div className="cs-conclusion-status cs-conclusion-reveal">
           <div className="cs-status-dot"></div>

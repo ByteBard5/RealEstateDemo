@@ -1694,6 +1694,7 @@ Jawitz Casestudy Results section Start
     line-height: 1.7;
   }
 }
+
 /* ================================================================
 Jawitz Casestudy Results section End
 =============================================================== */
@@ -1709,16 +1710,14 @@ Jawitz Casestudy Results section End
 }
 
 /* =========================================
-   NEW ROW-BASED LAYOUT
+   ROW LAYOUT
 ========================================= */
 
 .cs-conclusion-rows {
   margin-top: 90px;
-
   display: flex;
   flex-direction: column;
   gap: 28px;
-
   position: relative;
 }
 
@@ -1742,7 +1741,6 @@ Jawitz Casestudy Results section End
   opacity: 0;
   transform: translateY(15px);
   transition: all 0.7s ease;
-
   position: relative;
 }
 
@@ -1755,7 +1753,6 @@ Jawitz Casestudy Results section End
 
 .cs-conclusion-label.before {
   color: rgba(255, 255, 255, 0.42);
-  text-align: left;
 }
 
 .cs-conclusion-label.before::after {
@@ -1772,7 +1769,6 @@ Jawitz Casestudy Results section End
 
 .cs-conclusion-label.after {
   color: #78ffb4;
-  text-align: left;
 }
 
 .cs-conclusion-label.after::after {
@@ -1786,15 +1782,13 @@ Jawitz Casestudy Results section End
 }
 
 /* =========================================
-   EACH ROW
+   ROW
 ========================================= */
 
 .cs-conclusion-row {
   display: grid;
   grid-template-columns: 1fr 80px 1fr;
   align-items: center;
-
-  position: relative;
 
   opacity: 0;
   transform: translateY(30px);
@@ -1811,25 +1805,165 @@ Jawitz Casestudy Results section End
 }
 
 /* =========================================
-   CELLS
+   CELL BASE
 ========================================= */
 
 .cs-conclusion-cell {
   position: relative;
   font-size: 16.5px;
   line-height: 1.85;
-  transition: color 0.35s ease;
+  transition: all 0.4s ease;
+  cursor: default;
 }
 
-/* BEFORE */
+.cs-point-text {
+  display: inline-block;
+}
+
+/* =========================================
+   MANUAL SIDE
+========================================= */
 
 .cs-conclusion-cell.before {
   color: rgba(255, 255, 255, 0.62);
+  letter-spacing: 0.4px;
 }
 
 .cs-conclusion-cell.before:hover {
   color: rgba(255, 255, 255, 0.88);
 }
+
+/* =========================================
+   PER LETTER SYSTEM
+========================================= */
+
+.manual-text-inner {
+  display: inline-block;
+}
+
+.manual-letter {
+  display: inline-block;
+  position: relative;
+
+  transform: translateX(calc((var(--seed) % 3 - 1) * 1px))
+    translateY(calc((var(--seed) % 5 - 2) * 0.6px))
+    rotate(calc((var(--seed) % 7 - 3) * 0.15deg));
+
+  animation: letterFloat calc(3s + (var(--seed) * 0.02s)) ease-in-out infinite;
+
+  transition:
+    transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+/* stabilize on hover */
+
+.manual-chaos .manual-letter,
+.cs-conclusion-cell.before:hover .manual-letter {
+  transform: translate(0px, 0px) rotate(0deg);
+  animation: none;
+}
+
+/* MICRO FLOAT */
+
+@keyframes letterFloat {
+  0% {
+    transform: translateX(calc((var(--seed) % 3 - 1) * 1px))
+      translateY(calc((var(--seed) % 5 - 2) * 0.6px));
+  }
+
+  50% {
+    transform: translateX(calc((var(--seed) % 3 - 1) * -1px))
+      translateY(calc((var(--seed) % 5 - 2) * -0.6px));
+  }
+
+  100% {
+    transform: translateX(calc((var(--seed) % 3 - 1) * 1px))
+      translateY(calc((var(--seed) % 5 - 2) * 0.6px));
+  }
+}
+
+/* LOSS LETTERS */
+
+.loss-letter {
+  color: #ff4d4d;
+
+  text-shadow:
+    0 0 4px rgba(255, 80, 80, 0.6),
+    0 0 8px rgba(255, 0, 0, 0.4);
+
+  animation: lossFlicker 0.6s ease-in-out infinite;
+}
+
+@keyframes lossFlicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* FEAR SHAKE */
+
+.manual-fear .cs-point-text {
+  animation: manualFearShake 0.35s infinite;
+}
+
+@keyframes manualFearShake {
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  25% {
+    transform: translate(0.8px, -0.4px);
+  }
+
+  50% {
+    transform: translate(-0.8px, 0.4px);
+  }
+
+  75% {
+    transform: translate(0.6px, 0.2px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+/* CHAOS SHAKE */
+
+.manual-chaos .cs-point-text {
+  animation: manualChaosShake 0.25s infinite;
+}
+
+@keyframes manualChaosShake {
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  25% {
+    transform: translate(1px, -0.5px);
+  }
+
+  50% {
+    transform: translate(-1px, 0.5px);
+  }
+
+  75% {
+    transform: translate(0.6px, 0.3px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+/* CONNECTING LINE */
 
 .cs-conclusion-cell.before .cs-point-line {
   position: absolute;
@@ -1844,19 +1978,56 @@ Jawitz Casestudy Results section End
   transform: translateY(-50%);
 }
 
-/* AFTER */
+/* =========================================
+   AUTOMATED SIDE
+========================================= */
 
 .cs-conclusion-cell.after {
-  color: rgba(255, 255, 255, 0.96);
-}
-
-.cs-conclusion-cell.after:hover {
   color: #78ffb4;
+
+  text-shadow:
+    0 0 4px rgba(120, 255, 180, 0.5),
+    0 0 10px rgba(120, 255, 180, 0.25);
+
+  letter-spacing: 0.2px;
 }
 
-/* ❌ REMOVED GREEN OVAL GLOW COMPLETELY */
-.cs-point-glow {
-  display: none;
+/* bold active */
+
+.bold-active {
+  font-weight: 600;
+
+  transform: scale(1.04);
+
+  text-shadow:
+    0 0 6px #78ffb4,
+    0 0 18px rgba(120, 255, 180, 0.9),
+    0 0 36px rgba(120, 255, 180, 0.6);
+}
+
+/* shimmer */
+
+.auto-active .cs-point-text {
+  background: linear-gradient(90deg, #78ffb4, #ffffff, #78ffb4);
+
+  background-size: 200% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+
+  to {
+    background-position: 200% 0;
+  }
 }
 
 /* =========================================
@@ -1873,16 +2044,13 @@ Jawitz Casestudy Results section End
 
   justify-self: center;
 
-  box-shadow: 0 0 6px rgba(120, 255, 180, 0.6);
-}
-
-/* ❌ REMOVED EXTRA BLUR THAT CAUSED GLOW SPREAD */
-.cs-conclusion-center-dot::after {
-  display: none;
+  box-shadow:
+    0 0 6px rgba(120, 255, 180, 0.6),
+    0 0 12px rgba(120, 255, 180, 0.4);
 }
 
 /* =========================================
-   DIVIDER
+   DIVIDER LINE
 ========================================= */
 
 .cs-conclusion-rows::before {
@@ -1891,6 +2059,7 @@ Jawitz Casestudy Results section End
   position: absolute;
 
   left: 50%;
+
   transform: translateX(-50%);
 
   top: 0;
@@ -1914,6 +2083,7 @@ Jawitz Casestudy Results section End
   position: absolute;
 
   left: 50%;
+
   transform: translateX(-50%);
 
   top: -10%;
@@ -1928,6 +2098,7 @@ Jawitz Casestudy Results section End
 
 .scan-active .cs-scan-line {
   opacity: 1;
+
   animation: scanMove 2.5s ease-out forwards;
 }
 
@@ -1953,14 +2124,17 @@ Jawitz Casestudy Results section End
 
 .cs-conclusion-final-statement {
   margin-top: 90px;
+
   max-width: 900px;
 
   font-size: 18px;
+
   line-height: 1.9;
 
   color: rgba(255, 255, 255, 0.92);
 
   opacity: 0;
+
   transform: translateY(30px);
 
   transition: all 1s ease;
@@ -1968,11 +2142,8 @@ Jawitz Casestudy Results section End
 
 .cs-conclusion-final-statement.active {
   opacity: 1;
-  transform: translateY(0);
-}
 
-.cs-conclusion-final-statement.active::before {
-  width: 80px;
+  transform: translateY(0);
 }
 
 /* =========================================
@@ -1983,13 +2154,17 @@ Jawitz Casestudy Results section End
   margin-top: 80px;
 
   display: flex;
+
   align-items: center;
+
   gap: 12px;
 
   color: #78ffb4;
+
   font-size: 14px;
 
   opacity: 0;
+
   transform: translateY(15px);
 
   transition: all 0.7s ease;
@@ -1997,6 +2172,7 @@ Jawitz Casestudy Results section End
 
 .cs-conclusion-status.active {
   opacity: 1;
+
   transform: translateY(0);
 }
 
@@ -2005,6 +2181,7 @@ Jawitz Casestudy Results section End
   height: 10px;
 
   border-radius: 50%;
+
   background: #78ffb4;
 
   animation: statusPulse 1.5s infinite;

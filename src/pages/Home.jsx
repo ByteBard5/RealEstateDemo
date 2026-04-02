@@ -40,6 +40,8 @@ import CallRecordingSection from "../sections/CallRecordingSection";
 import SocialMediaSection from "../sections/SocialMediaSection";
 import ProcessAutomationSection from "../sections/ProcessAutomationSection";
 import CaseStudySection from "../sections/CaseStudySection";
+import BlogGatewaySection from "../sections/BlogGatewaySection";
+import PricingSection from "../sections/PricingSection";
 
 const Home = () => {
   return (
@@ -60,8 +62,12 @@ const Home = () => {
 
       <VideoSection />
 
+      <BlogGatewaySection />
+
       {/* Case Study Section */}
       <CaseStudySection />
+
+      <PricingSection />
 
       <CTASection />
     </>

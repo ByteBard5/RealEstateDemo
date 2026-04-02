@@ -1,30 +1,40 @@
 import { motion } from "framer-motion";
 
+/* ==========================================================================================
+   PROCESS AUTOMATION SECTION — PREMIUM TIMELINE DESIGN
+   Fonts: Playfair Display (headings) + DM Sans (body/UI)
+   Colors: #78ffb4 accent, radial dark green background
+========================================================================================== */
+
 const steps = [
   {
     number: "01",
-    title: "Every inquiry is captured instantly — without relying on anyone",
+    title: "Every Inquiry Captured Instantly",
     description:
-      "The moment someone fills out a form, sends a message, or requests information, the system captures everything automatically. No missed details. No forgotten follow-ups. Your pipeline stays complete, organized, and ready — even outside business hours.",
+      "The moment someone fills out a form, sends a message, or requests information, the system captures everything automatically. Your pipeline stays complete, organized, and compounding — even outside business hours. Zero leakage. Zero missed velocity.",
   },
   {
     number: "02",
-    title: "Information is structured and routed exactly where it belongs",
+    title: "Data Routed, Structured & Ready",
     description:
-      "Leads are organized, tagged, and delivered to the right place automatically. Your CRM updates itself. Your team sees exactly what matters. Instead of wasting hours managing data, everything stays clean, accurate, and ready for action.",
+      "Leads are tagged, organized, and delivered to the right place without a single manual step. Your CRM updates itself. Your team sees exactly what matters. Clean data means faster decisions — and faster decisions mean more closed deals.",
   },
   {
     number: "03",
-    title: "Follow-ups, reminders, and internal actions happen on their own",
+    title: "Follow-Ups Fire Without Any Trigger",
     description:
-      "Confirmation messages, team notifications, reminders, and task creation all happen instantly. Nothing depends on memory. Nothing falls through the cracks. Your business moves faster, more reliably, and without constant manual effort.",
+      "Confirmations, team alerts, reminders, and task creation all execute instantly. Nothing depends on memory. Nothing falls through the cracks. Every touchpoint compounds your reputation — and your pipeline — on autopilot.",
   },
 ];
 
 export default function ProcessAutomationSection() {
   return (
     <section className="process-section">
-      {/* HEADER */}
+      {/* === BACKGROUND ORBS === */}
+      <div className="process-orb process-orb--tl" aria-hidden="true" />
+      <div className="process-orb process-orb--br" aria-hidden="true" />
+
+      {/* === HEADER === */}
       <motion.div
         className="process-header"
         initial={{ opacity: 0, y: 40 }}
@@ -32,21 +42,27 @@ export default function ProcessAutomationSection() {
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        <h2>Automate the Work Behind Every Closed Deal</h2>
+        {/* Eyebrow label */}
+        <div className="process-eyebrow">System Architecture</div>
 
-        <p>
-          When your internal processes run automatically, your business moves
-          faster without increasing workload. Leads are captured, information is
-          organized, and actions are triggered instantly — eliminating delays,
-          reducing manual work, and ensuring every opportunity moves forward
-          without friction.
+        <h2 className="process-heading">
+          The Engine Running
+          <br />
+          <span className="process-heading--accent">Behind Every Deal</span>
+        </h2>
+
+        <p className="process-subtext">
+          When your internal processes run on infrastructure — not effort — your
+          business scales without friction. Leads are captured, information is
+          routed, and actions fire instantly. Every step is a compounding return
+          on the system you build once.
         </p>
       </motion.div>
 
-      {/* TIMELINE */}
+      {/* === TIMELINE === */}
       <div className="process-timeline">
-        {/* vertical line */}
-        <div className="process-line" />
+        {/* Vertical center line */}
+        <div className="process-line" aria-hidden="true" />
 
         {steps.map((step, index) => (
           <motion.div
@@ -54,32 +70,36 @@ export default function ProcessAutomationSection() {
             className="process-step"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
+            transition={{ duration: 0.65, delay: index * 0.13 }}
             viewport={{ once: true }}
           >
             {/* DOT */}
-            <div className="process-dot">
+            <div className="process-dot" aria-label={`Step ${step.number}`}>
               <span>{step.number}</span>
             </div>
 
             {/* CARD */}
             <div className="process-card">
-              <h3>{step.title}</h3>
-
-              <p>{step.description}</p>
+              {/* Top gradient shimmer line */}
+              <div className="process-card__topline" aria-hidden="true" />
+              <h3 className="process-card__title">{step.title}</h3>
+              <p className="process-card__body">{step.description}</p>
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* RESULT */}
+      {/* === RESULT CALLOUT === */}
       <motion.div
         className="process-result"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.35 }}
         viewport={{ once: true }}
       >
+        <span className="process-result__icon" aria-hidden="true">
+          ⟡
+        </span>
         Your team focuses on closing deals. The system handles everything else.
       </motion.div>
     </section>

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 /*
 ====================================================
-CASE STUDY DATA (REAL DATA READY)
+CASE STUDY DATA
 ====================================================
 */
 
@@ -20,7 +20,6 @@ const caseStudies = [
     ],
     link: "/case-study/capetown-real-estate",
   },
-
   {
     title: "New York Real Estate",
     subtitle: "Sales & Operations Workflow Automation",
@@ -33,7 +32,6 @@ const caseStudies = [
     ],
     link: "/case-study/newyork-salesforce-automation",
   },
-
   {
     title: "Real Estate Conversion Engine",
     subtitle: "End-to-End Client Acquisition System",
@@ -57,35 +55,51 @@ COMPONENT
 export default function CaseStudySection() {
   return (
     <section id="case-study" className="case-study-section">
-      {/* INTRO */}
+      {/* BACKGROUND ORBS */}
+      <div className="cs-bg-orb cs-orb-1" />
+      <div className="cs-bg-orb cs-orb-2" />
 
+      {/* INTRO */}
       <motion.div
         className="case-study-intro"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: true }}
       >
-        <h2>Case Studies</h2>
-
+        <div className="case-study-eyebrow">Proven Results</div>
+        <h2>
+          Real Systems.
+          <br />
+          <span className="case-study-headline-accent">
+            Measurable Returns.
+          </span>
+        </h2>
         <p>
-          Explore real systems developed for real estate companies. Each case
-          study demonstrates measurable operational improvements, faster
-          response times, and more efficient client acquisition through
-          intelligent automation.
+          These aren't projections — they're documented outcomes. Every system
+          was built to generate compounding returns, not just operational
+          efficiency.
         </p>
       </motion.div>
 
       {/* GRID */}
-
       <div className="case-study-grid">
         {caseStudies.map((study, index) => (
           <Link key={index} to={study.link} className="case-study-card-link">
             <motion.div
               className="case-study-card"
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
+              transition={{
+                duration: 0.55,
+                delay: index * 0.13,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }}
             >
+              {/* TOP ACCENT LINE */}
+              <div className="card-top-line" />
+
               <div className="case-study-label">Case Study</div>
 
               <h3 className="case-study-title">{study.title}</h3>
@@ -94,21 +108,31 @@ export default function CaseStudySection() {
 
               <p className="case-study-description">{study.description}</p>
 
+              {/* RESULTS */}
               <div className="case-study-results">
                 {study.results.map((result, i) => (
-                  <div key={i} className="case-study-result-item">
+                  <motion.div
+                    key={i}
+                    className="case-study-result-item"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.13 + i * 0.08 + 0.3 }}
+                    viewport={{ once: true }}
+                  >
                     <div className="case-study-result-value">
                       {result.value}
                     </div>
-
                     <div className="case-study-result-label">
                       {result.label}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
-              <div className="case-study-view">View full case study →</div>
+              <div className="case-study-view">
+                View full case study
+                <span className="cs-arrow">→</span>
+              </div>
             </motion.div>
           </Link>
         ))}

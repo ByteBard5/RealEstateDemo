@@ -1,30 +1,41 @@
 import { motion } from "framer-motion";
 
+/* ==========================================================================================
+   SOCIAL MEDIA SECTION — Platform Cards with Left Copy Panel
+========================================================================================== */
+
 const platforms = [
   {
     name: "Facebook",
     image: "/social_media-images/fb_image.png",
-    result: "Never miss an inquiry from your property listings again.",
-    stat: "Responds instantly to messages and comments.",
+    result:
+      "Every property inquiry answered the moment it arrives — no lag, no missed leads.",
+    stat: "Instant replies to messages and comments, around the clock.",
   },
   {
     name: "Instagram",
     image: "/social_media-images/ig_image.png",
-    result: "Turns profile visitors and DMs into qualified conversations.",
-    stat: "Keeps leads engaged automatically, even outside business hours.",
+    result:
+      "Profile visitors and DMs convert into qualified pipeline automatically.",
+    stat: "Leads stay warm and engaged — even at 2am, even on weekends.",
   },
   {
     name: "LinkedIn",
     image: "/social_media-images/li_image.png",
-    result: "Captures and nurtures high-intent professional inquiries.",
-    stat: "Ensures every opportunity is acknowledged and followed up.",
+    result:
+      "High-intent professional inquiries captured and nurtured without lifting a finger.",
+    stat: "Every opportunity acknowledged, tracked, and followed up — guaranteed.",
   },
 ];
 
 export default function SocialMediaSection() {
   return (
     <section className="social-section">
-      {/* LEFT SIDE */}
+      {/* --- Background Orbs --- */}
+      <div className="social-orb social-orb--tl" aria-hidden="true" />
+      <div className="social-orb social-orb--br" aria-hidden="true" />
+
+      {/* === LEFT SIDE === */}
       <motion.div
         className="social-left"
         initial={{ opacity: 0, x: -60 }}
@@ -32,28 +43,50 @@ export default function SocialMediaSection() {
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        <h2>Social media stays active. Even when you’re not.</h2>
+        {/* Eyebrow Label */}
+        <motion.div
+          className="social-eyebrow"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          Always On
+        </motion.div>
 
-        <p>
-          Every message, comment, and inquiry is handled instantly — without
-          your team needing to monitor platforms all day.
+        {/* Heading */}
+        <h2 className="social-heading">
+          Your social pipeline,
+          <br />
+          <span className="social-heading--accent">never goes silent.</span>
+        </h2>
+
+        {/* Body Copy */}
+        <p className="social-body">
+          Every message, comment, and inquiry is handled the instant it lands —
+          no team monitoring required, no opportunity left on the table. When a
+          prospect asks about a property, pricing, or availability, they receive
+          a natural, on-brand response in seconds.
           <br />
           <br />
-          When someone asks about a property, availability, or pricing, they
-          receive a natural response immediately. Conversations stay warm, leads
-          stay engaged, and your agents step in only when it matters.
-          <br />
-          <br />
-          The result is simple: faster responses, stronger relationships, and
-          more qualified opportunities ready for your team.
+          Conversations stay warm. Leads compound. Your agents step in only at
+          the moment of highest intent — turning social engagement into a fully
+          automated front-end pipeline that works while you sleep.
         </p>
 
-        <div className="social-highlight">
-          No missed conversations. No delayed responses. No lost opportunities.
-        </div>
+        {/* Highlight Bar */}
+        <motion.div
+          className="social-highlight"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          viewport={{ once: true }}
+        >
+          No missed conversations. No delayed responses. No lost revenue.
+        </motion.div>
       </motion.div>
 
-      {/* RIGHT SIDE */}
+      {/* === RIGHT SIDE — Platform Cards === */}
       <div className="social-right">
         {platforms.map((platform, index) => (
           <motion.div
@@ -61,20 +94,23 @@ export default function SocialMediaSection() {
             className="social-card"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
+            transition={{ duration: 0.6, delay: index * 0.13 }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.04 }}
+            whileHover={{ y: -5 }}
           >
-            <div className="social-card-image">
+            {/* Top gradient accent line */}
+            <div className="social-card__top-line" aria-hidden="true" />
+
+            {/* Image */}
+            <div className="social-card__image">
               <img src={platform.image} alt={platform.name} />
             </div>
 
-            <div className="social-card-content">
-              <h3>{platform.name}</h3>
-
-              <p className="social-result">{platform.result}</p>
-
-              <p className="social-stat">{platform.stat}</p>
+            {/* Content */}
+            <div className="social-card__content">
+              <h3 className="social-card__name">{platform.name}</h3>
+              <p className="social-card__result">{platform.result}</p>
+              <p className="social-card__stat">{platform.stat}</p>
             </div>
           </motion.div>
         ))}
@@ -82,3 +118,6 @@ export default function SocialMediaSection() {
     </section>
   );
 }
+/* ==========================================================================================
+   SOCIAL MEDIA SECTION END
+========================================================================================== */

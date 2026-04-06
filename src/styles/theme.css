@@ -5502,7 +5502,6 @@ GLOBAL LAYOUT SYSTEM (Professional solution)
 ========================================================================================== */
 /* ==========================================================================================
    SINGLE BLOG PAGE — FULL STYLESHEET
-   Design System: Playfair Display + DM Sans | Accent: #78ffb4 | BG: radial dark green
 ========================================================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500&display=swap");
@@ -5568,7 +5567,7 @@ GLOBAL LAYOUT SYSTEM (Professional solution)
 .cs-container {
   position: relative;
   z-index: 1;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   width: 100%;
 }
@@ -5689,28 +5688,15 @@ GLOBAL LAYOUT SYSTEM (Professional solution)
 }
 
 /* ==========================================================================================
-   INTRO BODY LAYOUT (spine + content)
+   INTRO BODY LAYOUT
 ========================================================================================== */
 
 .cs-intro-body {
   display: flex;
-  gap: clamp(20px, 4vw, 40px);
+  gap: 0;
   align-items: flex-start;
   position: relative;
   z-index: 1;
-}
-
-.cs-intro-spine {
-  flex-shrink: 0;
-  width: 2px;
-  align-self: stretch;
-  background: linear-gradient(
-    180deg,
-    rgba(120, 255, 180, 0.5) 0%,
-    rgba(120, 255, 180, 0.08) 100%
-  );
-  border-radius: 2px;
-  min-height: 100px;
 }
 
 .cs-intro-content {
@@ -5723,7 +5709,7 @@ GLOBAL LAYOUT SYSTEM (Professional solution)
 ========================================================================================== */
 
 .blog-content {
-  max-width: 720px;
+  max-width: 100%;
   width: 100%;
 }
 
@@ -5736,8 +5722,6 @@ GLOBAL LAYOUT SYSTEM (Professional solution)
   margin-top: clamp(32px, 5vh, 48px);
   margin-bottom: clamp(10px, 1.5vh, 16px);
   line-height: 1.25;
-  border-left: 3px solid #78ffb4;
-  padding-left: 14px;
 }
 
 .blog-content h3 {
@@ -6065,7 +6049,7 @@ GLOBAL LAYOUT SYSTEM (Professional solution)
 
 @media (max-width: 900px) {
   .cs-intro-body {
-    gap: 16px;
+    gap: 0;
   }
 
   .blog-content {
@@ -6080,11 +6064,6 @@ GLOBAL LAYOUT SYSTEM (Professional solution)
 @media (max-width: 680px) {
   .single-blog-page {
     padding-top: 80px;
-  }
-
-  /* Hide spine on very small screens */
-  .cs-intro-spine {
-    display: none;
   }
 
   .cs-intro-content {

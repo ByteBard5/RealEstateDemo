@@ -63,7 +63,6 @@ const SingleBlog = () => {
   return (
     <AnimatePresence>
       <section className="cs-section single-blog-page">
-
         {/* ── BACKGROUND ORBS ── */}
         <div className="sb-orb sb-orb--tl" aria-hidden="true"></div>
         <div className="sb-orb sb-orb--br" aria-hidden="true"></div>
@@ -80,7 +79,6 @@ const SingleBlog = () => {
         </div>
 
         <div className="cs-container">
-
           {/* ── BACK BUTTON ── */}
           <motion.button
             className="back-btn"
@@ -107,14 +105,10 @@ const SingleBlog = () => {
             </div>
 
             {/* Title */}
-            <h1 className="cs-section-title sb-title">
-              {blog.title}
-            </h1>
+            <h1 className="cs-section-title sb-title">{blog.title}</h1>
 
             {/* Subtitle */}
-            {blog.subtitle && (
-              <p className="sb-subtitle">{blog.subtitle}</p>
-            )}
+            {blog.subtitle && <p className="sb-subtitle">{blog.subtitle}</p>}
 
             {/* Meta */}
             <div className="sb-meta">
@@ -130,15 +124,10 @@ const SingleBlog = () => {
                 })}
               </span>
             </div>
-
           </motion.div>
 
           {/* ── BODY ── */}
           <div className="cs-intro-body">
-
-            {/* LEFT SPINE */}
-            <div className="cs-intro-spine" aria-hidden="true"></div>
-
             {/* CONTENT */}
             <motion.div
               className="cs-intro-content blog-content"
@@ -172,11 +161,9 @@ const SingleBlog = () => {
                   automated, ROI-driven system could compound for your pipeline.
                 </p>
               </motion.div>
-
             </motion.div>
           </div>
           {/* ── BODY END ── */}
-
         </div>
       </section>
     </AnimatePresence>
